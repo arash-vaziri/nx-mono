@@ -74,6 +74,11 @@
             "buildTarget": "@turbo/api:build:production"
           }
         }
+      },
+      "test": {
+        "options": {
+          "passWithNoTests": true
+        }
       }
     }
   },

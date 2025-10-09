@@ -82,5 +82,7 @@
       }
     }
   },
-  "dependencies": {}
+  "devDependencies": {
+    "@nestjs/cli": "^11.0.10"
+  }
 }

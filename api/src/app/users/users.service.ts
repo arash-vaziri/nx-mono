@@ -60,6 +60,18 @@ export class UsersService {
         
     }
 
+    async delete(id: number) : Promise<Users | NotFoundException> {
+
+        const target = await this.userRepo.findOne({where : { id} });
+        if(!target)
+            throw new NotFoundException();
+
+        await this.userRepo.softRemove(target)
+
+        return target;
+
+    }
+
 
 
 

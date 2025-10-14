@@ -1,5 +1,5 @@
 
-import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import {Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export class Users {
@@ -19,5 +19,8 @@ export class Users {
 
     @Column()
     password!: string;
+
+    @DeleteDateColumn({ nullable: true })
+    deleted_at?: Date;
 
 }

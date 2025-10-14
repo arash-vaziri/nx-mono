@@ -2,7 +2,7 @@
 import {Column, CreateDateColumn, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
-export class UserEntity {
+export class Users {
 
 
     @PrimaryGeneratedColumn()
@@ -14,8 +14,8 @@ export class UserEntity {
     @Column({ unique : true})
     email!: string;
 
-    @CreateDateColumn()
-    created_at!: string;
+    @CreateDateColumn({ type: 'datetime' })
+    created_at!: Date;
 
     @Column()
     password!: string;

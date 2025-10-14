@@ -1,10 +1,10 @@
-import { IsEmail,IsNotEmpty, MinLength, MaxLength, IsOptional } from 'class-validator';
+import { IsEmail,IsNotEmpty, MinLength, MaxLength, IsOptional,IsNumber } from 'class-validator';
 import { IsPassword } from '../../../common/decorators/isPassword';
 
 export class CreateUserDto {
 
-    // @IsNumber()
-    // id!: number;
+    @IsNumber()
+    id?: number;
 
     @IsNotEmpty()
     full_name!: string;

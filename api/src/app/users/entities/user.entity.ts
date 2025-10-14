@@ -1,8 +1,8 @@
 
 import {Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn} from 'typeorm';
 
-@Entity()
-export class Users {
+@Entity({name : 'user'})
+export class UserEntity {
 
 
     @PrimaryGeneratedColumn()

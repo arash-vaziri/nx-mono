@@ -1,17 +1,17 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Users } from './entities/user.entity';
+import { UserEntity } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { NotFoundError } from 'rxjs';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
 
 
-    constructor(@InjectRepository(Users)
-                private readonly userRepo :Repository<Users>) {}
+    constructor(@InjectRepository(UserEntity)
+                private readonly userRepo : Repository<UserEntity> ) {}
 
 
     async create(params: CreateUserDto) {
@@ -31,7 +31,7 @@ export class UsersService {
         return await this.userRepo.find();
     }
 
-    async single(id : number) : Promise<Users | NotFoundError> {
+    async single(id : number) : Promise<UserEntity | NotFoundException> {
         
         try {
 
@@ -43,7 +43,7 @@ export class UsersService {
         
     }
 
-    async update(id : number , user : UpdateUserDto) : Promise< Users | NotFoundError> {
+    async update(id : number , user : UpdateUserDto) : Promise< UserEntity | NotFoundException> {
         
         try {
 
@@ -60,7 +60,7 @@ export class UsersService {
         
     }
 
-    async delete(id: number) : Promise<Users | NotFoundException> {
+    async delete(id: number) : Promise<UserEntity | NotFoundException> {
 
         const target = await this.userRepo.findOne({where : { id} });
         if(!target)

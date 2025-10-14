@@ -15,48 +15,25 @@ export class UsersService {
 
 
     async create(params: CreateUserDto) {
-       
-        try {
 
             const user = this.userRepo.create(params); 
             return await this.userRepo.save(user);
-        
-        } catch(e) {
-            throw new BadRequestException({ message : e.message});
-        }
-
     }
 
     async list() : Promise<CreateUserDto[]> {
         return await this.userRepo.find();
     }
 
-    async single(id : number) : Promise<UserEntity | NotFoundException> {
+    async single(id : number) : Promise<UserEntity> {
         
-        try {
-
-            return await this.userRepo.findOneOrFail({ where : { id}})
-        } catch(e) {
-            throw new NotFoundException();
-        }
-    
-        
+        return await this.userRepo.findOneOrFail({ where : { id}})
     }
 
-    async update(id : number , user : UpdateUserDto) : Promise< UserEntity | NotFoundException> {
+    async update(id : number , user : UpdateUserDto) : Promise< UserEntity> {
         
-        try {
 
             await this.userRepo.update(id ,user);
-            
             return this.single(id);
-            
-            
-
-        } catch(e) {
-            throw new NotFoundException();
-        }
-    
         
     }
 

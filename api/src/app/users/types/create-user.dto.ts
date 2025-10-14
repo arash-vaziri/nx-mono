@@ -3,8 +3,8 @@ import { IsPassword } from '../../../common/decorators/isPassword';
 
 export class CreateUserDto {
 
-    @IsNumber()
-    id?: number;
+    // @IsNumber()
+    // id?: number;
 
     @IsNotEmpty()
     full_name!: string;

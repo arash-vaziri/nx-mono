@@ -1,5 +1,5 @@
 import { IsEmail,IsNotEmpty, MinLength, MaxLength, IsOptional,IsNumber } from 'class-validator';
-import { IsPassword } from '../../../common/decorators/isPassword';
+import { IsPassword } from '../../common/decorators/isPassword';
 
 export class CreateUserDto {
 

@@ -1,5 +1,5 @@
-import { Logger, ValidationPipe } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { ClassSerializerInterceptor, Logger, ValidationPipe } from '@nestjs/common';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app/app.module';
 import { GlobalExceptionFilter } from './common/filters/globalException.filter';
 
@@ -20,6 +20,10 @@ async function bootstrap() {
   app.useGlobalFilters(new GlobalExceptionFilter());
 
   
+  //<-- remove the exclude items
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+
+
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   

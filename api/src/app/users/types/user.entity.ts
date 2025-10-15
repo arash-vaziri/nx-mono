@@ -1,5 +1,13 @@
 
-import {Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn} from 'typeorm';
+import { Exclude } from 'class-transformer';
+import { Column, 
+         CreateDateColumn, 
+         DeleteDateColumn, 
+         Entity, 
+         PrimaryGeneratedColumn} from 'typeorm';
+
+
+
 
 @Entity({name : 'user'})
 export class UserEntity {
@@ -18,8 +26,10 @@ export class UserEntity {
     created_at!: Date;
 
     @Column()
+    @Exclude()
     password!: string;
 
+    @Exclude()
     @DeleteDateColumn({ nullable: true })
     deleted_at?: Date;
 

@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UsersModule } from '../users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { OrganizationsModule } from '../organizations/organizations.module';
 
 @Module({
   imports: [
@@ -13,7 +14,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
           //synchronize: true, // auto-create tables (disable in prod!)
     }),
     
-    UsersModule
+    UsersModule,
+    OrganizationsModule
   ],
 })
 export class AppModule {}

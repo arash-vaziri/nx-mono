@@ -1,10 +1,12 @@
 import { ExceptionFilter, Catch, ArgumentsHost } from '@nestjs/common';
 import handlers from '../exceptions';
 
+import { EntityNotFoundError, QueryFailedError } from 'typeorm';
+
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
   
-    private handlers = handlers;
+  private handlers = handlers;
 
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -13,6 +15,8 @@ export class GlobalExceptionFilter implements ExceptionFilter {
 
     const handler = this.handlers.find((h) => h.canHandle(exception))!;
     const { status, message } = handler.handle(exception);
+
+
 
     response.status(status).json({
       success: false,

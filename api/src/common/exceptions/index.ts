@@ -7,10 +7,10 @@ import { GenericErrorHandler } from './genericErrors.exception';
 import { HttpExceptionHandler } from './http.exception';
 
 const handlers: IExceptionHandler[] = [
+  new DatabaseExceptionHandler,
   new HttpExceptionHandler,
   new GenericErrorHandler,
   new FallbackHandler,
-  new DatabaseExceptionHandler
 ];
 
 export default handlers;

@@ -1,10 +1,11 @@
-import { QueryFailedError } from 'typeorm';
+import { EntityNotFoundError, QueryFailedError } from 'typeorm';
 import { HttpStatus } from '@nestjs/common';
 import { IExceptionHandler } from './exception.interface';
 
 export class DatabaseExceptionHandler implements IExceptionHandler {
   canHandle(exception: unknown): boolean {
-    return exception instanceof QueryFailedError;
+    return exception instanceof QueryFailedError 
+          || exception instanceof EntityNotFoundError;
   }
 
   handle(exception: unknown): { status: HttpStatus; message: string } {
@@ -17,6 +18,13 @@ export class DatabaseExceptionHandler implements IExceptionHandler {
       status = HttpStatus.CONFLICT;
       message = 'Duplicate key error';
     }
+
+    if (exception instanceof EntityNotFoundError) {
+      status = HttpStatus.NOT_FOUND;
+      message = 'item not found';
+    }
+
+   
 
     return { status, message };
   }
